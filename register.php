@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 if ($isPass) {
-    $db = new mysqli("127.0.0.1", "root", "123456", "myfirstphpproj");
+    $db = new mysqli("127.0.0.1", "root", "123456", "myfirstphpproj");//此处连接自己的数据库
     $sqlSearch = "select username from userInfo where username= '$usrName';";
     if (mysqli_num_rows($db->query($sqlSearch))) {
         echo "<script>alert('用户名已被注册！');history.go(-1);</script>";
@@ -53,7 +53,7 @@ if ($isPass) {
         </form>
 EOF;
 }
-function isPass($account, $password, $password2)
+function isPass($account, $password, $password2)//检测输入是否规范
 {
     global $usrNameErr, $passwordErr;
     ($isPass1 = preg_match("/^[a-zA-Z]+$/", $account)) ?: $usrNameErr = "只允许字母！（大小写都行）你的输入：" . $account;
